@@ -2,9 +2,11 @@ package com.SportSync2.controller;
 
 import com.SportSync2.dto.UserDto;
 import com.SportSync2.exception.UserAlreadyExistsException;
+import com.SportSync2.repository.UserRepository;
 import com.SportSync2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
@@ -14,7 +16,9 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+
+    public static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;

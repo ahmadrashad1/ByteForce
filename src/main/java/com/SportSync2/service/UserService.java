@@ -15,10 +15,12 @@ public class UserService {
     private UserRepository userRepository;
 
     public void registerUser(UserDto userDTO) {
-        if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
+        // Check if a user with the given email already exists
+        if (userRepository.findByEmail(userDTO.getEmail()) != null) { // Changed from `isPresent()`
             throw new UserAlreadyExistsException("Email already registered.");
         }
 
+        // Map DTO to entity and save
         User user = UserMapper.toEntity(userDTO);
         userRepository.save(user);
     }

@@ -1,6 +1,5 @@
 package com.SportSync2.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -8,14 +7,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
-    public void sendVerificationEmail(String toEmail, String token) {
+    public EmailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
+
+    public void sendVerificationEmail(String to, String token) {
+        String subject = "Email Verification";
+        String verificationLink = "http://localhost:8080/auth/verify?token=" + token;
+
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(toEmail);
-        message.setSubject("Verify Your Email");
-        message.setText("Click the link to verify your account: http://localhost:8080/auth/verify?token=" + token);
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText("Click the link to verify your email: " + verificationLink);
+
         mailSender.send(message);
     }
 }

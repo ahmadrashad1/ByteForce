@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -21,10 +22,12 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private String profilePicture;
+   // private String profilePicture;
 
-    private boolean verified; // Default is false until email verification
+    private boolean verified;
 
-    @Enumerated(EnumType.STRING)
-    private Role role; // USER, ADMIN
+    //@Enumerated(EnumType.STRING)
+    //private Role role;
+
+
 }

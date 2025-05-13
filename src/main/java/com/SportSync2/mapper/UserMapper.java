@@ -9,7 +9,7 @@ public class UserMapper {
         User user = new User();
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
-        user.setVerified(false); // Default not verified
+        user.setVerified(true); // Default not verified
         return user;
     }
 

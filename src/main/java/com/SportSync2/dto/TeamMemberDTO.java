@@ -10,13 +10,18 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDto {
+@Builder
+public class TeamMemberDTO {
+
+    @NotBlank(message = "Name is required")
+    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
+    @Pattern(
+            regexp = "^[A-Za-z0-9 ]+$",
+            message = "Event name must contain only letters, numbers, and spaces"
+    )
+    private String name;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Email should be valid")
     private String email;
-
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, max = 100, message = "Password must be between 6 and 100 characters")
-    private String password;
 }
